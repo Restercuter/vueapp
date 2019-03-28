@@ -1,63 +1,70 @@
 <template>
-  <div id='nav'>
-    <form>
-    <input type="text" placeholder="name"v-model='user_data.name' >name</input><br/>>
-    <input type="text"placeholder="reg_no" v-model='user_data.reg_no'>Registration number</input>
-    <input type="password" v-model='user_data.password'>Password</input>
-    <input type="password" v-model='user_data.confirm_pass'>Confirm password</input>
-    <button :click="register()">submit</button>
-    </form>
+  <v-layout column>
+  <v-flex xs6 offset-xs3>
+  <div class = 'white elevator-2'>
+  <v-toolbar flat dense class = 'cyan' dark>
+  <v-toolbar-title>Register</v-toolbar-title>
+  </v-toolbar>
+
+    <div class = "pl-4 pr-4 pt-2 pb-2">
+    <v-text-field
+    name="input-1"
+    label= "Admission Number"
+    id="testing"
+    vmodel = "name"></v-text-field>
+    <br/>
+    <v-text-field
+    name="password"
+    type="password"
+    label= "Password"
+    id="testing"
+    vmodel = "name"></v-text-field>
+    <br/>
+    <v-text-field
+    name="password"
+    type="password"
+    label= "Confirm Password"
+    id="testing"
+    vmodel = "name"></v-text-field><br/>
+    <div class = "error" v-html = "error"/>
+    <br/>
+    <v-btn flat dark>
+   <router-link to ="login">Register</router-link>
+   </v-btn>
+</div>
+
+
+  </div>
+  </v-flex>
+  </v-layout>
+
+
   </div>
 </template>
 
 <script>
-  export default{
-    data() {
-      return {
-
-        user_data: {}
+  import AuthenticationService from '@/services/AuthenticationService'
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      error: null
+        }
+  },
+  methods: {
+    async register (){
+      try {
+        await AuthenticationService.register({
+          name: this.name,
+          password: this.password
+        })
+      } catch (error){
+        this.error= error.response.data.error
       }
-    },
-
-    methods: {
-      register(){
-        console.log(`user data is:${JSON.stringify(this.user_data)}`)
-      }
-    },
-  }
+    }
+  },
+}
 </script>
 <style scoped>
-form{
-    padding-top: 20px;
-    padding-left: 100px;
-    padding-bottom: 10px;
-    margin-left: 400px;
-    font-size: 40px;
-    background:green;
-    width: 470px;
-    height: 500px;
-    margin: auto;
-    border-radius:10px;
-    opacity: 0.85;
-    color: black;
-
-  }
-  nav input{
-    margin-top: 30px;
-    width: 350px;
-    height: 30px;
-    font-size: 20px;
-    border-radius: 10px;
-  }
-  form input[type="submit"]{
-    width: 100px;
-    margin-left: 300px;
-    background: white;
-    color: black;
-
-
-  }
-
-
-</style>
 
