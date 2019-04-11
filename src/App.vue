@@ -1,7 +1,7 @@
 <template>
   <div id="app">
   <v-app>
-  <page-header/>
+  <page/>
   <main>
     <v-container fluid>
     <img src="./assets/logo.jpg"></img>
@@ -20,7 +20,7 @@
 export default {
   name: 'App',
   components:{
-    PageHeader
+    'page': PageHeader
   }
 
   }

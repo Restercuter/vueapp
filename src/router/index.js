@@ -5,6 +5,10 @@ import Register from '@/components/Register'
 import Login from '@/components/login'
 import Papers from '@/components/papers'
 import ChatRoom from '@/components/Chats'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios)
 Vue.use(Router)
 
 export default new Router({

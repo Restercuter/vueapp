@@ -3,7 +3,7 @@
  <v-toolbar-title class= "mr-4">
 
  <v-btn flat dark>
-     <router-link to ="root">PataPastPapers</router-link>
+     <router-link to ="/">PataPastPapers</router-link>
 
    </v-btn>
 
@@ -22,9 +22,13 @@
  <v-spacer></v-spacer>
 
  <v-toolbar-items >
+
  <v-btn
 
- flat dark>
+
+
+ flat dark >
+
      <router-link to ="login">Login</router-link>
 
    </v-btn>
@@ -36,7 +40,7 @@
 
    </v-btn>
    <v-btn
-   flat dark>
+   flat dark >
      <router-link to ="root">Log Out</router-link>
 
    </v-btn>
@@ -47,7 +51,20 @@
 </template>
 
 <Script>
+import {mapGetters} from vuex;
+export default {
+  name:'header',
+  data(){
+    return {
+      auth:'false'
+    }
+  },
+  mouted:{
+    console.log('me')
+    this.auth = this.$store.getters('getAuth')
+  }
 
+}
 </Script>
 
 <style scoped>
